@@ -192,8 +192,8 @@ def get_predictions(models, days, test_lines, df):
         predictions.append((model[1], round(prediction, 2)))
     return predictions
 
-def tweet_predictions(api, predictions_text, intro_tweets, company, p1):
-    prediction_text = predictions_text.format(date.today(), random.choice(intro_tweets).format(company),
+def tweet_predictions(api, predictions_text, intro_tweets, company, last_close, p1):
+    prediction_text = predictions_text.format(date.today(), random.choice(intro_tweets).format(company, last_close),
     p1[0][0], p1[0][1], p1[1][0], p1[1][1], p1[2][0], p1[2][1])
     print('-----\nNew tweet:\n{}\n-----'.format(prediction_text))
     api.update_status(prediction_text)
