@@ -1,4 +1,4 @@
-# **Twitter Bot for Machine Learning: Stock Predictions**   
+<h1 align="center">Twitter Bot for Machine Learning: Stock Predictions</h1>   
 
 ![](https://github.com/KenzoBH/Data-Science/blob/main/Images/Regress.jpg)
 
@@ -30,6 +30,7 @@ More details of the models training and selection is in `regress_bot.py`and `fun
 
 -------------------------
 
-My Data Science portfolio: [link](https://github.com/KenzoBH/Data-Science)   
-My LinkedIn: [link](https://www.linkedin.com/in/bruno-kenzo/)
+<p align="center">My Data Science portfolio: <a href="https://github.com/KenzoBH/Data-Science">link</a><br>My LinkedIn: <a href="https://www.linkedin.com/in/bruno-kenzo/">link</a></p>
+<p align="center">Bruno Kenzo, 17 yo.</p>
+
 
