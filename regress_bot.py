@@ -42,9 +42,9 @@ company_not_found_text = 'Oi @{}!\nNão encontramos essa ação: {} :(\nVocê di
 already_registered_company_text = 'Eai, @{}!\nJá tweetamos previsões de {} :D\n\n{}'
 companies_list_text = 'Eai @{}!\nTweetamos previsões dessas ações: {}\n\n{}'
 intro_tweets = [
-    'Sobre {}, que fechou ontem com R$ {}, a gente tem umas previsões:\n',
-    '{} fechou ontem em R$ {}. Trouxemos nossas previsões pra você :D\n',
-    'Se liga nas nossa previsões pra {}, que fechou ontem em R$ {}\n']
+    'Sobre {}, que fechou ontem em R$ {}, a gente tem umas previsões\n',
+    '{} fechou ontem em R$ {}. Trouxemos nossas previsões pra você\n',
+    'Se liga nas nossas previsões pra {}, que fechou ontem em R$ {}\n']
 predictions_text = '{}\n{}\nFechamento de hoje\n {}: R$ {}\n {}: R$ {}\n {}: R$ {}'
 
 df_length = 30
