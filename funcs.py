@@ -87,6 +87,7 @@ def get_data_from_web(link, company, df_length):
     df = pd.read_html(link_company)[0].drop('Adj Close**', axis = 1)
 
     df = df[~df['Open'].str.contains('Dividend')]
+    df = df[~df['Open'].str.contains('Split')]
     df = df[df['Volume'] != '-'].head(df_length)
 
     df['Date'] = pd.to_datetime(df['Date'])
@@ -174,6 +175,7 @@ def get_predictions(models, days, test_lines, df):
     scaler.fit(X_train)
 
     last_data = df.iloc[0].drop(not_features)
+    print(last_data)
     last_data = scaler.transform([last_data])
     X_to_fit = df.drop(not_features, axis = 1)[days:]
     X_to_fit = scaler.transform(X_to_fit)
@@ -190,8 +192,8 @@ def get_predictions(models, days, test_lines, df):
         predictions.append((model[1], round(prediction, 2)))
     return predictions
 
-def tweet_predictions(api, predictions_text, intro_tweets, company, last_close, p1):
-    prediction_text = predictions_text.format(date.today(), random.choice(intro_tweets).format(company, last_close),
+def tweet_predictions(api, predictions_text, intro_tweets, company, p1):
+    prediction_text = predictions_text.format(date.today(), random.choice(intro_tweets).format(company),
     p1[0][0], p1[0][1], p1[1][0], p1[1][1], p1[2][0], p1[2][1])
     print('-----\nNew tweet:\n{}\n-----'.format(prediction_text))
     api.update_status(prediction_text)
