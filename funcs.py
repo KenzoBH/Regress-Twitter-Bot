@@ -142,6 +142,8 @@ def get_best_3_models(models, X_train, X_test, y_train, y_test, days):
     baseline_rmse = mean_squared_error(y_test, baseline) ** 0.5
     print('Baseline RMSE: R$ {}'.format(round(baseline_rmse, 3)))
 
+    hps = []
+    rmses = []
     final_list = []
     for mdl_and_params in models:
         model = mdl_and_params[0]
@@ -162,8 +164,11 @@ def get_best_3_models(models, X_train, X_test, y_train, y_test, days):
         final_list.append([mdl_rmse, model_name, best_mdl])
         print('{} RMSE: R$ {}'.format(model_name, round(mdl_rmse, 4)))
         print('    {}'.format(best_params))
+        hps.append(best_params) # contem os melhores hps de cada modelo
+        rmses.append(mdl_rmse)
     best_3_models = sorted(final_list)[:3]
-    return best_3_models
+    baseline_rmses = [baseline_rmse for _ in range(len(models))]
+    return best_3_models, hps, rmses, baseline_rmses
 
 def get_predictions(models, days, test_lines, df):
     not_features = ['Date', 'Next Day Close', 'Next 5th Day Close']
@@ -192,6 +197,37 @@ def get_predictions(models, days, test_lines, df):
         predictions.append((model[1], round(prediction, 2)))
     return predictions
 
+def update_report(models, report_file, company, p1, hps, rmses, baseline_rmses): # Function that updates the report with new predictions data for future analysis
+    report = pd.read_csv(report_file, index_col = 0) # df to append new data
+
+    date_vector = [date.today() for _ in range(len(models))]
+    model_names = [model[2] for model in models]
+    company_vector = [company for _ in range(len(models))]
+    right_side = [np.nan for _ in range(len(models))]
+    error = [np.nan for _ in range(len(models))]
+    real_close = [np.nan for _ in range(len(models))]
+
+    new_data = pd.DataFrame({'Date': date_vector,
+                    'Model': model_names,
+                    'Hps': hps,
+                    'Model RMSE': rmses,
+                    'Baseline RMSE': baseline_rmses,
+                    'Company': company_vector,
+                    'Right Side': right_side,
+                    'Error': error,
+                    'Real Close': real_close})
+    new_data['Prediction'] = np.nan
+    new_data['Top 3'] = 0
+    for top in p1:
+        for i in range(len(new_data['Model'])):
+            if new_data['Model'][i] == top[0]:
+                new_data['Prediction'][i] = top[1]
+                new_data['Top 3'][i] = 1
+        
+    new_report = pd.concat([report, new_data], ignore_index = True)
+    new_report.to_csv(report_file)
+    print('Report updated!\n')
+    
 def tweet_predictions(api, predictions_text, intro_tweets, company, last_close, p1):
     prediction_text = predictions_text.format(date.today(), random.choice(intro_tweets).format(company, last_close),
     p1[0][0], p1[0][1], p1[1][0], p1[1][1], p1[2][0], p1[2][1])
