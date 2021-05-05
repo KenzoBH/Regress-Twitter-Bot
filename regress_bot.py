@@ -17,7 +17,7 @@ from sklearn.metrics import mean_squared_error
 import warnings
 warnings.filterwarnings('ignore')
 
-# TWEETER KEYS AND "CONSTANT VARIABLES" -----------------------------
+# TWITTER KEYS AND "CONSTANT VARIABLES" -----------------------------
 
 CONSUMER_KEY = 'XXX'
 CONSUMER_SECRET = 'XXX'
@@ -35,6 +35,7 @@ predictions_time = (4, 0)  # (Hour, minute), time to tweet the predictions
 link = 'https://finance.yahoo.com/quote/{}/history?p={}' # Link of the website that we get the data: Yahoo Finance
 companies_file = 'companies.txt'
 last_mention_id_file = 'last-mention-id.txt'
+report_file = 'report.csv'
 
 # Generic texts for tweeting
 register_company_text = 'Nova ação para análise cadastrada por @{}:\n{} ;)\n\n{}'
@@ -113,8 +114,9 @@ while True:
             df, last_close = funcs.get_data_from_web(link, company, df_length)
 
             X1_train, X1_test, y1_train, y1_test = funcs.get_train_test_data(df, 1, test_lines)
-            best_models_1_day = funcs.get_best_3_models(models, X1_train, X1_test, y1_train, y1_test, 1)
+            best_models_1_day, hps, rmses, baseline_rmses = funcs.get_best_3_models(models, X1_train, X1_test, y1_train, y1_test, 1)
             p1 = funcs.get_predictions(best_models_1_day, 1, 10, df)
+            funcs.update_report(models, report_file, company, p1, hps, rmses, baseline_rmses)
 
             funcs.tweet_predictions(api, predictions_text, intro_tweets, company, last_close, p1)
         time.sleep(60)
