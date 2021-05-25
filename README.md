@@ -24,6 +24,8 @@ You can see the final project [here](https://twitter.com/RegressML), the Twitter
 
 The program train 7 models everyday, tuning their hyperparameters. They are: Stochastic Gradient Descent, Ridge Regression, Linear Support Vector Regressor, K-Nearest Neighbors, Random Forest, Ada Boost and MLP. The models are trained with the last 30 days, and tested with the last 5 - the best 3 are chosen (based on their RMSE, Root Mean Squared Error) to tweet the predictions. As I observed, Linear SVR and SGD are the best ones.
 
+<div align="center">
+  
 | Model | Tuned Hyperparameters |
 | :---: | :-------------------: |
 | [Stochastic Gradient Descent](https://scikit-learn.org/stable/modules/generated/sklearn.linear_model.SGDRegressor.html?highlight=sgd#sklearn.linear_model.SGDRegressor) | Penalty, Alpha and Learning Rate |
@@ -33,6 +35,8 @@ The program train 7 models everyday, tuning their hyperparameters. They are: Sto
 | [Random Forest Regressor](https://scikit-learn.org/stable/modules/generated/sklearn.ensemble.RandomForestRegressor.html?highlight=random%20forest#sklearn.ensemble.RandomForestRegressor) | Number of Trees |
 | [Ada Boost](https://scikit-learn.org/stable/modules/generated/sklearn.ensemble.AdaBoostRegressor.html?highlight=ada%20boost#sklearn.ensemble.AdaBoostRegressor) | Number of Estimators and Learning Rate |
 | [Multi-layer Perceptron Regressor](https://scikit-learn.org/stable/modules/generated/sklearn.neural_network.MLPRegressor.html?highlight=mlp#sklearn.neural_network.MLPRegressor) | Activation Function and Learning Rate | 
+  
+</div>
 
 As the data is a time series, the ideal would train models like [Arima](https://pt.wikipedia.org/wiki/ARIMA#:~:text=Em%20estat%C3%ADstica%20e%20econometria%2C%20particularmente,de%20m%C3%A9dias%20m%C3%B3veis%20(ARMA).) or [Prophet, from Facebook](https://facebook.github.io/prophet/).   
 I chose to use more "classic" models, because I wanted to see how these models would perform. As the next step, you could see how time series models would predict. Furthermore, as the program is hosted in a free platform, PythonAnywhere, it becomes impracticable train models with a lot of data - that's why I opted for 30 days (and using more days - I got to use 5 years - to train the models increased their RMSE, that's interesting). Maybe, with more recent data, the models learn stronger relations between the features and the label, one the recent data reflects better the today data.   
