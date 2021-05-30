@@ -10,7 +10,7 @@ Some of the main technologies and packages used:
 - **Web Scraping** using [pandas](https://pandas.pydata.org/)
 - **Machine Learning** with [sklearn](https://scikit-learn.org/stable/) and [scikit-optimze](https://scikit-optimize.github.io/stable/)
 - **Twitter Bot** on [Tweepy API](https://www.tweepy.org/)
-- **Deploy** at PythonAnywhere (now, I'm looking for another online hosting platform)
+- **Deploy**: I'm looking for another online hosting platform
 
 You can see the final project [here](https://twitter.com/RegressML), the Twitter account of Regress.
 
