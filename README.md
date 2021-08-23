@@ -47,6 +47,6 @@ More details of the models training and selection is in [`regress_bot.py`](https
 -------------------------
 
 <p align="center">My Data Science portfolio: <a href="https://github.com/KenzoBH/Data-Science">link</a><br>My LinkedIn: <a href="https://www.linkedin.com/in/bruno-kenzo/">link</a></p>
-<p align="center">Bruno Kenzo, 17 yo.</p>
+<p align="center">Bruno Kenzo, 18 yo.</p>
 
 
