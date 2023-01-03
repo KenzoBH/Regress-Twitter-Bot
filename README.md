@@ -5,7 +5,6 @@
 # Overview   
 
 This project is about publishing (or tweeting) forecasts of 7 models on stocks in the financial market everyday. Users can see the predictions and ask for predictions of the companies they want.     
-You can see the portuguese project page here, in my website: [link](https://kenzobh.github.io/projects/Regress-Twitter-Bot.html). There, I discussed over the project in a simpler way.   
 Some of the main technologies and packages used:
 - **Web Scraping** using [pandas](https://pandas.pydata.org/)
 - **Machine Learning** with [sklearn](https://scikit-learn.org/stable/) and [scikit-optimze](https://scikit-optimize.github.io/stable/)
